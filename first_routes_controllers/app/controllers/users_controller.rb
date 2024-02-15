@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         if user && user.update(user_params)
             redirect_to user_url(user.id)
         else
-            render json: user.erros.full_messages, status: 422
+            render json: user.errors.full_messages, status: 422
         end
     end
 
@@ -35,11 +35,11 @@ class UsersController < ApplicationController
         incoming_id = params[:id]
         user = User.find(incoming_id)
         user.destroy
-        redirect to users_url
+        render json: user
     end
 
     private
     def user_params
-        params.require(:user).permit(:name, :email)
+        params.require(:user).permit(:username)
     end
 end

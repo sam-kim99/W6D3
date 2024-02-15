@@ -1,13 +1,45 @@
 class UsersController < ApplicationController
     def index
-        render plain: "I'm in the index action!"
+        users = User.all
+        render json: users
     end
 
+    # http://localhost:3000/users?user[name]=tim&user[email]=tim@tim.com
     def create
-        render json: params
+        user = User.new(user_params)
+        if user.save
+          render json: user
+        else
+          render json: user.errors.full_messages, status: :unprocessable_entity
+        end
     end
 
     def show
-        render json: params
+        incoming_id = params[:id]
+        user = User.find(incoming_id)
+        render json: user
+    end
+    
+    def update
+        incoming_id = params[:id]
+        user = User.find(incoming_id)
+
+        if user && user.update(user_params)
+            redirect_to user_url(user.id)
+        else
+            render json: user.erros.full_messages, status: 422
+        end
+    end
+
+    def destroy
+        incoming_id = params[:id]
+        user = User.find(incoming_id)
+        user.destroy
+        redirect to users_url
+    end
+
+    private
+    def user_params
+        params.require(:user).permit(:name, :email)
     end
 end

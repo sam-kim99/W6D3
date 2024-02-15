@@ -1,7 +1,9 @@
 class ArtworksController < ApplicationController
     def index
-        artworks = Artwork.all
-        render json: artworks
+        incoming_id = params[:user_id]
+        user = User.find(incoming_id)
+        # render json: Artwork.artworks_for_user_id(incoming_id) + User.find(incoming_id).shared_artworks
+        render json: user.artworks + user.shared_artworks
     end
 
     # http://localhost:3000/users?user[name]=tim&user[email]=tim@tim.com

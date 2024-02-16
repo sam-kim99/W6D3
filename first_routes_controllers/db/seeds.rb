@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Comment.destroy_all
 ArtworkShare.destroy_all
 Artwork.destroy_all
 User.destroy_all
@@ -61,3 +62,21 @@ artwork_share8 = ArtworkShare.create!(viewer_id: michelle.id, artwork_id: artwor
 # Artwork7 + viewer
 artwork_share9 = ArtworkShare.create!(viewer_id: angela.id, artwork_id: artwork7.id)
 
+# Comments
+comment1 = Comment.create!(author_id: joe.id, artwork_id: artwork1.id, body: "Beautiful work!")
+comment2 = Comment.create!(author_id: walker.id, artwork_id: artwork1.id, body: "Beautiful work!!")
+comment3 = Comment.create!(author_id: mike.id, artwork_id: artwork1.id, body: "Beautiful work!!!")
+# Artwork2 + authors
+comment4 = Comment.create!(author_id: joe.id, artwork_id: artwork2.id, body: "Love the colors!")
+comment5 = Comment.create!(author_id: michelle.id, artwork_id: artwork2.id, body: "Love the colors!!")
+# Artwork3 + authors
+comment4 = Comment.create!(author_id: alissa.id, artwork_id: artwork3.id, body: "Great use of brushwork!")
+comment5 = Comment.create!(author_id: jen.id, artwork_id: artwork3.id, body: "Great use of brushwork!!")
+# Artwork4 + author
+comment6 = Comment.create!(author_id: dean.id, artwork_id: artwork4.id, body: "Very serene")
+# Artwork5 + author
+comment7 = Comment.create!(author_id: ryan.id, artwork_id: artwork5.id, body: "Looks wonderful")
+# Artwork6 + author
+comment8 = Comment.create!(author_id: michelle.id, artwork_id: artwork6.id, body: "Abstract art")
+# Artwork7 + author
+comment9 = Comment.create!(author_id: angela.id, artwork_id: artwork7.id, body: "Wish I had snow where I lived")
